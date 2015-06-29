@@ -79,18 +79,18 @@ public class TestBranch extends TestCase {
         ApplicationContext ctx = new ClassPathXmlApplicationContext("testContext.xml");
         BranchService branchService = (BranchService) ctx.getBean("BranchService");
         final Long totalCount = null;
-        FetchResult<Branch> branches = branchService.getBranchesFetchResulyWithPagination(0, 10, "", null);
+        FetchResult<Branch> branches = branchService.getBranchesFetchResultWithPagination(0, 10, "", null);
         System.out.println("totalCount" + branches.getCount());
         for (Branch branch : branches.getResults()) {
             System.out.println("branch.getName() = " + branch.getName());
         }
         System.out.println("=====================================");
-        branches = branchService.getBranchesFetchResulyWithPagination(null, 20, "name", true);
+        branches = branchService.getBranchesFetchResultWithPagination(null, 20, "name", true);
         for (Branch branch : branches.getResults()) {
             System.out.println("branch.getName() = " + branch.getName());
         }
         System.out.println("=====================================");
-        branches = branchService.getBranchesFetchResulyWithPagination(0, 10, "name", false);
+        branches = branchService.getBranchesFetchResultWithPagination(0, 10, "name", false);
         for (Branch branch : branches.getResults())
             System.out.println("branch.getName() = " + branch.getName());
     }

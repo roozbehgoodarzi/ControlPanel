@@ -57,7 +57,7 @@ public class BranchService {
         return getBranchDao().getAllWithPagination(Branch.class, firstResult, maxResult, orderByParam, asc);
     }
     @Transactional
-    public FetchResult<Branch> getBranchesFetchResulyWithPagination(Integer firstResult, Integer maxResult, String orderByParam, Boolean asc) {
+    public FetchResult<Branch> getBranchesFetchResultWithPagination(Integer firstResult, Integer maxResult, String orderByParam, Boolean asc) {
         return getBranchDao().getFetchResultWithPagination(Branch.class, firstResult, maxResult, orderByParam, asc);
     }
 
