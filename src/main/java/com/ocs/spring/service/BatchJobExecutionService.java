@@ -8,6 +8,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.sql.Timestamp;
 import java.util.List;
+import java.util.Map;
 
 /**
  * Created by Goodarzi on 06/15/2015.
@@ -39,7 +40,15 @@ public class BatchJobExecutionService {
     public List<BatchJobExecution> getAllBatchExecutionsByStartTime(Timestamp startTime){
         return getBranchJobExecutionDao().getBatchJobExecutionsByStartTime(startTime);
     }
+
+    @Transactional
     public List<BatchJobExecution> getAllBatchExecutionsByStatus(String status){
         return getBranchJobExecutionDao().getBatchJobExecutionsByStatus(status);
     }
+
+    @Transactional
+    public List<BatchJobExecution> getJobExecutionsByParameters(Map<String, String> params){
+        return (List<BatchJobExecution>) getBranchJobExecutionDao().getByParameters(BatchJobExecution.class, params);
+    }
+
 }
