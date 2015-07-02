@@ -4,6 +4,7 @@ import junit.framework.TestCase;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
+import java.sql.Timestamp;
 import java.util.List;
 
 /**
@@ -31,5 +32,15 @@ public class TestBatchJobExecution extends TestCase {
         ApplicationContext ctx = new ClassPathXmlApplicationContext("testContext.xml");
         BatchJobExecutionService batchJobExecutionService = (BatchJobExecutionService) ctx.getBean("BatchJobExecutionService");
         List<BatchJobExecution> batchJobExecutions = batchJobExecutionService.getAllBatchExecutionsByStatus("1");
+    }
+
+    public void testFetchBatchJobExecutionsByStartDateAndBranch(){
+        ApplicationContext ctx = new ClassPathXmlApplicationContext("testContext.xml");
+        BatchJobExecutionService batchJobExecutionService = (BatchJobExecutionService) ctx.getBean("BatchJobExecutionService");
+        Timestamp timestamp = Timestamp.valueOf("2015-07-01 15:54:14");
+        List<BatchJobExecution> batchJobExecutions = batchJobExecutionService.getBatchJobExecutionsByStartDateAndBranch(timestamp,"COMPLETED","CODE", "1185");
+        for (BatchJobExecution batchJobExecution : batchJobExecutions) {
+            System.out.println("batchJobExecution.getCreateTime() = " + batchJobExecution.getCreateTime());
+        }
     }
 }

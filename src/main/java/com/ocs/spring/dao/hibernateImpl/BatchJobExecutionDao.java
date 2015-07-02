@@ -40,7 +40,7 @@ public class BatchJobExecutionDao extends GenericDaoHibernate<BatchJobExecution>
                 .add(Restrictions.like("status", status))
                 .createCriteria("jobExecutionParams")
                 .add(Restrictions.like("keyName", keyName))
-                .add(Restrictions.like("stringValue", stringValue))
+                .add(Restrictions.like("stringVal", stringValue))
                 .list();
         return batchJobExecutions;
     }
