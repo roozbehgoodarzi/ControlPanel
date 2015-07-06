@@ -66,6 +66,7 @@ public class BranchService {
         return getBranchDao().getByParameter(Branch.class, paramName, paramValue);
     }
 
+    @Transactional
     public Branch getBranchByParameters(Map<String,String> paramMap){
         return getBranchDao().getByParameters(Branch.class, paramMap);
     }

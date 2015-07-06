@@ -41,6 +41,7 @@ public class TestBatchJobExecution extends TestCase {
         List<BatchJobExecution> batchJobExecutions = batchJobExecutionService.getBatchJobExecutionsByStartDateAndBranch(timestamp,"COMPLETED","CODE", "1185");
         for (BatchJobExecution batchJobExecution : batchJobExecutions) {
             System.out.println("batchJobExecution.getCreateTime() = " + batchJobExecution.getCreateTime());
+            System.out.println("batchJobExecution.getJobExecutionParams().get(0).getKeyName() = " + batchJobExecution.getJobExecutionParams().get(0).getKeyName());
         }
     }
 }
