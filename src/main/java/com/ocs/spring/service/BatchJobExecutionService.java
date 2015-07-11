@@ -56,4 +56,9 @@ public class BatchJobExecutionService {
         return getBranchJobExecutionDao().getBatchJobExecutionsByStartDateAndBranch(startTime, status, keyName, stringValue);
     }
 
+    @Transactional
+    public BatchJobExecution getBatchJobExecutionByParameter(String paramName, String paramValue){
+        return getBranchJobExecutionDao().getByParameter(BatchJobExecution.class, paramName, paramValue);
+    }
+
 }

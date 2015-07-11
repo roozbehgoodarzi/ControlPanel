@@ -44,4 +44,11 @@ public class TestBatchJobExecution extends TestCase {
             System.out.println("batchJobExecution.getJobExecutionParams().get(0).getKeyName() = " + batchJobExecution.getJobExecutionParams().get(0).getKeyName());
         }
     }
+
+    public void testFetchGetByParameter(){
+        ApplicationContext ctx = new ClassPathXmlApplicationContext("testContext.xml");
+        BatchJobExecutionService batchJobExecutionService = (BatchJobExecutionService) ctx.getBean("BatchJobExecutionService");
+        BatchJobExecution batchJobExecution = batchJobExecutionService.getBatchJobExecutionByParameter("id","2");
+        System.out.println("batchJobExecution.toString() = " + batchJobExecution.toString());
+    }
 }
