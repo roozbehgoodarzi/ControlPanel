@@ -41,8 +41,8 @@ public class GenericDaoHibernate<T extends DomainObject> implements GenericDAO<T
     public <T> T getByParameter(final Class<T> type, String paramName, String paramValue) {
         Session session = sessionFactory.getCurrentSession();
         final Criteria crit = session.createCriteria(type);
-        crit.add(Restrictions.like(paramName, paramValue));
-        return (T) crit.list().get(0);
+        crit.add(Restrictions.like(paramName, 1L));
+        return (T) crit.uniqueResult();
     }
 
     public <T> T getByParameters(final Class<T> type, Map<String, String> params) {

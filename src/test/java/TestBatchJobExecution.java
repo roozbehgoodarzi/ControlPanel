@@ -48,7 +48,13 @@ public class TestBatchJobExecution extends TestCase {
     public void testFetchGetByParameter(){
         ApplicationContext ctx = new ClassPathXmlApplicationContext("testContext.xml");
         BatchJobExecutionService batchJobExecutionService = (BatchJobExecutionService) ctx.getBean("BatchJobExecutionService");
-        BatchJobExecution batchJobExecution = batchJobExecutionService.getBatchJobExecutionByParameter("id","2");
+        BatchJobExecution batchJobExecution = batchJobExecutionService.getBatchJobExecutionByParameter("id", "1");
         System.out.println("batchJobExecution.toString() = " + batchJobExecution.toString());
+    }
+
+    public void testFetchBatchJobExecutionByTimeRange(){
+        ApplicationContext ctx = new ClassPathXmlApplicationContext("testContext.xml");
+        BatchJobExecutionService batchJobExecutionService = (BatchJobExecutionService) ctx.getBean("BatchJobExecutionService");
+//        FetchResult<BatchJobExecution> batchJobExecutionFetchResult = batchJobExecutionService.getBatchJobExecutionsByTimeRange();
     }
 }

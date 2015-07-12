@@ -1,6 +1,7 @@
 package com.ocs.spring.service;
 
 import com.ocs.entity.BatchJobExecution;
+import com.ocs.entity.FetchResult;
 import com.ocs.spring.dao.hibernateImpl.BatchJobExecutionDao;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -17,48 +18,53 @@ import java.util.Map;
 @Transactional
 public class BatchJobExecutionService {
     @Autowired
-    private BatchJobExecutionDao branchJobExecutionDao;
+    private BatchJobExecutionDao batchJobExecutionDao;
 
-    public BatchJobExecutionDao getBranchJobExecutionDao() {
-        return branchJobExecutionDao;
+    public BatchJobExecutionDao getBatchJobExecutionDao() {
+        return batchJobExecutionDao;
     }
 
-    public void setBranchJobExecutionDao(BatchJobExecutionDao branchJobExecutionDao) {
-        this.branchJobExecutionDao = branchJobExecutionDao;
+    public void setBatchJobExecutionDao(BatchJobExecutionDao batchJobExecutionDao) {
+        this.batchJobExecutionDao = batchJobExecutionDao;
     }
     @Transactional
     public BatchJobExecution getBatchJobExecutionById(Long id){
-        return getBranchJobExecutionDao().get(BatchJobExecution.class, Long.valueOf(id));
+        return getBatchJobExecutionDao().get(BatchJobExecution.class, Long.valueOf(id));
     }
 
     @Transactional
     public List<BatchJobExecution> getAllBatchJobExecutions(){
-        return getBranchJobExecutionDao().getAll(BatchJobExecution.class);
+        return getBatchJobExecutionDao().getAll(BatchJobExecution.class);
     }
 
     @Transactional
     public List<BatchJobExecution> getAllBatchExecutionsByStartTime(Timestamp startTime){
-        return getBranchJobExecutionDao().getBatchJobExecutionsByStartTime(startTime);
+        return getBatchJobExecutionDao().getBatchJobExecutionsByStartTime(startTime);
     }
 
     @Transactional
     public List<BatchJobExecution> getAllBatchExecutionsByStatus(String status){
-        return getBranchJobExecutionDao().getBatchJobExecutionsByStatus(status);
+        return getBatchJobExecutionDao().getBatchJobExecutionsByStatus(status);
     }
 
     @Transactional
     public List<BatchJobExecution> getJobExecutionsByParameters(Map<String, String> params){
-        return (List<BatchJobExecution>) getBranchJobExecutionDao().getByParameters(BatchJobExecution.class, params);
+        return (List<BatchJobExecution>) getBatchJobExecutionDao().getByParameters(BatchJobExecution.class, params);
     }
 
     @Transactional
     public List<BatchJobExecution> getBatchJobExecutionsByStartDateAndBranch(Timestamp startTime, String status, String keyName, String stringValue){
-        return getBranchJobExecutionDao().getBatchJobExecutionsByStartDateAndBranch(startTime, status, keyName, stringValue);
+        return getBatchJobExecutionDao().getBatchJobExecutionsByStartDateAndBranch(startTime, status, keyName, stringValue);
     }
 
     @Transactional
     public BatchJobExecution getBatchJobExecutionByParameter(String paramName, String paramValue){
-        return getBranchJobExecutionDao().getByParameter(BatchJobExecution.class, paramName, paramValue);
+        return getBatchJobExecutionDao().getByParameter(BatchJobExecution.class, paramName, paramValue);
+    }
+
+    @Transactional
+    public FetchResult<BatchJobExecution> getBatchJobExecutionsByTimeRange(Integer firstResult, Integer maxResult, String orderByParam, Boolean asc, Timestamp startTimeFrom, Timestamp startTimeTo){
+        return getBatchJobExecutionDao().getBatchJobExecutionsByTimeRange(firstResult, maxResult, orderByParam, asc, startTimeFrom, startTimeTo);
     }
 
 }

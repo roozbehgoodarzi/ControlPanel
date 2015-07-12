@@ -1,5 +1,8 @@
 package com.ocs.entity;
 
+import org.hibernate.annotations.Fetch;
+import org.hibernate.annotations.FetchMode;
+
 import javax.persistence.*;
 import java.sql.Timestamp;
 import java.util.ArrayList;
@@ -34,10 +37,12 @@ public class BatchJobExecution implements DomainObject {
     @Column(name = "LAST_UPDATED")
     private Timestamp lastUpdated;
     @ElementCollection(fetch = FetchType.EAGER)
+    @Fetch(FetchMode.SELECT)
     @CollectionTable(name="BATCH_JOB_EXECUTION_PARAMS", joinColumns = @JoinColumn(name = "JOB_EXECUTION_ID"))
     @Column(name="Job_Execution_Param")
     private List<BatchJobExecutionParam> jobExecutionParams;
     @OneToMany(fetch = FetchType.EAGER)
+    @Fetch(FetchMode.SELECT)
     @JoinColumn(name="JOB_EXECUTION_ID")
     private List<BatchStepExecution> batchStepExecutions = new ArrayList<BatchStepExecution>();
 
